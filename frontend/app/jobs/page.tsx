@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Loader2, Search, MapPin, Briefcase, DollarSign, Calendar, X } from "lucide-react"
-import { useAuth } => "@/contexts/auth-context"
+import { useAuth } from "@/contexts/auth-context"
 
 interface Job {
   id: number
@@ -162,7 +162,6 @@ export default function JobsPage() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="lg:col-span-2"
-          icon={<Search className="h-4 w-4 text-muted-foreground" />}
         />
         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
           <SelectTrigger>

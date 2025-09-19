@@ -146,7 +146,6 @@ async function generateFeedback(data: any) {
   const { text } = await generateText({
     model: openai("gpt-4"),
     prompt,
-    maxTokens: 1000,
   })
 
   return NextResponse.json({ feedback: text })

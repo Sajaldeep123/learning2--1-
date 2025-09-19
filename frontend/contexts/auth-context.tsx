@@ -1,10 +1,12 @@
 "use client"
 
 import type React from "react"
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useState, useEffect, ReactNode } from "react"
 import { createClient } from "@/lib/supabase/client"
 
 interface User {
+  profile: any
+  username: ReactNode
   id: string
   email: string
   user_metadata?: {
@@ -41,6 +43,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           id: session.user.id,
           email: session.user.email!,
           user_metadata: session.user.user_metadata,
+          profile: session.user.user_metadata?.profile ?? null,
+          username: session.user.user_metadata?.username ?? "",
         })
       }
       setLoading(false)
@@ -57,6 +61,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           id: session.user.id,
           email: session.user.email!,
           user_metadata: session.user.user_metadata,
+          profile: session.user.user_metadata?.profile ?? null,
+          username: session.user.user_metadata?.username ?? "",
         })
       } else {
         setUser(null)

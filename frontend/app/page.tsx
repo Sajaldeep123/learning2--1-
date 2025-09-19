@@ -28,11 +28,13 @@ import { AuthModal } from "@/components/auth-modal"
 import { Navigation } from "@/components/navigation"
 import { useAuth } from "@/contexts/auth-context"
 import { ReviewSection } from "@/components/review-section"
-import router from 'next/router';
+// import router from 'next/router';
+import { useRouter } from "next/navigation";
 
 export const dynamic = "force-dynamic"
 
 export default function HomePage() {
+  const router = useRouter();
   const [isChatOpen, setIsChatOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const { user, login } = useAuth()
@@ -60,19 +62,31 @@ export default function HomePage() {
     return () => observer.disconnect()
   }, [])
 
+  // const handleGetStarted = () => {
+  //   if (user) {
+  //     // Navigate to dashboard or a specific onboarding page
+  //     router.push("/dashboard/quizzes") // Redirect to quizzes as an onboarding/assessment page
+  //   } else {
+  //     setIsAuthModalOpen(true)
+  //   }
+  // }
   const handleGetStarted = () => {
     if (user) {
-      // Navigate to dashboard or a specific onboarding page
-      router.push("/dashboard/quizzes") // Redirect to quizzes as an onboarding/assessment page
+      router.push("/dashboard/quizzes") // ✅ works fine
     } else {
       setIsAuthModalOpen(true)
     }
   }
 
+  // const handleLogin = (userData: any) => {
+  //   login(userData)
+  //   setIsAuthModalOpen(false)
+  //   router.push("/dashboard") // Redirect to dashboard after successful login
+  // }
   const handleLogin = (userData: any) => {
     login(userData)
     setIsAuthModalOpen(false)
-    router.push("/dashboard") // Redirect to dashboard after successful login
+    router.push("/dashboard")
   }
 
   return (

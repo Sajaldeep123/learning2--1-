@@ -93,7 +93,6 @@ Current context: You're assisting students on the EduCareer learning platform.`
     model: openai("gpt-4"),
     messages: [{ role: "system", content: systemPrompt }, ...convertToModelMessages(messages)],
     tools,
-    maxSteps: 3,
     abortSignal: req.signal,
   })
 

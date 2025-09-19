@@ -34,7 +34,7 @@ export function MockInterviewSession({ sessionId, interviewType, onSessionEnd }:
   const [questions, setQuestions] = useState<Question[]>([])
   const [answers, setAnswers] = useState<{ questionId: string; answer: string; timeSpent: number }[]>([])
 
-  const timerRef = useRef<NodeJS.Timeout>()
+  const timerRef = useRef<NodeJS.Timeout | null>(null)
   const questionStartTime = useRef<number>(0)
   const { toast } = useToast()
 
